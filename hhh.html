@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step Scroll Animation</title>
+  <style>
+    .scroll-container {
+      width: 270px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      text-align: center;
+      padding: 20px 0px 20px 30px;
+    }
+
+    .badges-top {
+      white-space: nowrap;
+    }
+
+    .badge img {
+      width: 80px;
+      margin: 0px 10px;
+    }
+
+    .badge-bottom img {
+      margin-left: 150px;
+    }
+
+    .write span:last-of-type,
+    .write_2 span:last-of-type {
+      font-weight: bold;
+      color: cornflowerblue;
+      position: relative;
+      font-size: 20px;
+      left: -75px;
+      top: -24px;
+    }
+
+    .write_2 span:last-of-type {
+      left: -126px;
+      top: -30px;
+    }
+
+    .write_2 img {
+      position: relative;
+      left: -60px;
+    }
+
+    .write_3,
+    .write_4 {
+      position: relative;
+      left: -95px
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scroll-container" id="badgeScroll">
+
+    <div class="badges-top">
+
+      <span class="badge write"><img
+          src="https://judgeme-public-images.imgix.net/judgeme/medals-v2-2025-rebranding/ver_rev/diamond.svg?auto=format"
+          alt=""><span>13.7K</span></span>
+
+      <span class="badge write_2"><img
+          src="https://judgeme-public-images.imgix.net/judgeme/medals-v2-2025-rebranding/mon_rec/diamond_hollow.svg?auto=format"
+          alt="rev"><span>262</span></span>
+
+      <span class="badge write_3"><img
+          src="https://judgeme-public-images.imgix.net/judgeme/medals-v2-2025-rebranding/tran/bronze.svg?auto=format"
+          alt="rev"></span>
+
+      <span class="badge write_4"><img
+          src="https://judgeme-public-images.imgix.net/judgeme/medals-v2-2025-rebranding/tops/1-percent.svg?auto=format"
+          alt="rev"></span>
+
+    </div>
+
+    <span class="badge badge-bottom"><img
+        src="https://judgeme-public-images.imgix.net/judgeme/medals-v2-2025-rebranding/tops_trend/1-percent.svg?auto=format"
+        alt="rev"></span>
+
+  </div>
+
+  <script>
+    const container = document.getElementById("badgeScroll");
+
+    let steps = [];
+    function setSteps() {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const midScroll = maxScroll / 2;
+      steps = [0, midScroll, maxScroll];
+    }
+
+
+    setSteps();
+
+    let index = 0;
+    setInterval(() => {
+      container.scrollTo({
+        left: steps[index],
+        behavior: "smooth"
+      });
+      index = (index + 1) % steps.length;
+    }, 2500);
+
+    window.addEventListener("resize", setSteps);
+  </script>
+
+</body>
+
+</html>
